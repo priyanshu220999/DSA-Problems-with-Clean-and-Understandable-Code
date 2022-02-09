@@ -21,20 +21,25 @@ public:
             
             if(min_diff>cur_diff){
                 min_diff = cur_diff;
+                result.clear();
+            }
+            
+            if(min_diff == cur_diff){
+                result.push_back(vector<int>{arr[i],arr[i+1]});
             }
         }
         
-        for(int i = 0;i<n-1;i++){
+//         for(int i = 0;i<n-1;i++){
             
-            int cur_diff = abs(arr[i]-arr[i+1]);
+//             int cur_diff = abs(arr[i]-arr[i+1]);
             
-            if(cur_diff == min_diff){
+//             if(cur_diff == min_diff){
                 
-                vector<int> cur_pair = {arr[i],arr[i+1]};
+//                 vector<int> cur_pair = {arr[i],arr[i+1]};
                 
-                result.push_back(cur_pair);
-            }
-        }
+//                 result.push_back(cur_pair);
+//             }
+//         }
         return result;
     }
 };
