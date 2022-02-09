@@ -1,58 +1,71 @@
 class Solution {
     
-    int count = 0;
+//     int count = 0;
     
-    int min_count = 0;
+//     int min_count = 0;
     
-    int max_count = 0;
+//     int max_count = 0;
     
-    int get_min(vector<int> nums){
+//     int get_min(vector<int> nums){
         
-        int result = INT_MAX;
+//         int result = INT_MAX;
         
-        for(int i:nums){
+//         for(int i:nums){
             
-            if(i<result)
-                result = i;
-        }
-        return result;
-    }
+//             if(i<result)
+//                 result = i;
+//         }
+//         return result;
+//     }
     
-    int get_max(vector<int> nums){
-        int result = INT_MIN;
+//     int get_max(vector<int> nums){
+//         int result = INT_MIN;
         
-        for(int i:nums){
+//         for(int i:nums){
             
-            if(i>result)
-                result = i;
-        }
-        return result;
-    }
+//             if(i>result)
+//                 result = i;
+//         }
+//         return result;
+//     }
     
-    void count_func(vector<int> nums,int &count,int &max_count,int &min_count,int min_ele,int max_ele){
+//     void count_func(vector<int> nums,int &count,int &max_count,int &min_count,int min_ele,int max_ele){
         
-        for(int i:nums){
+//         for(int i:nums){
             
-            count++;
+//             count++;
             
-            if(i == min_ele)
-                min_count++;
-            else if(i == max_ele)
-                max_count++;
-        }
-    }
+//             if(i == min_ele)
+//                 min_count++;
+//             else if(i == max_ele)
+//                 max_count++;
+//         }
+//     }
     
 public:
     int countElements(vector<int>& nums) {
         
-        int min_ele = get_min(nums);
-        int max_ele = get_max(nums);
+        int n = nums.size();
         
-        count_func(nums,count,max_count,min_count,min_ele,max_ele);
+        if(nums.size()<=2)
+            return 0;
         
-        if(max_count==count || count == max_count+min_count) return 0;
+        sort(nums.begin(),nums.end());
         
-        int result = count - max_count - min_count;
+        if(nums[0]==nums[n-1]) return 0;
+        
+        int min_ele = nums[0],max_ele = nums[n-1];
+        
+        int min_count = 0,max_count = 0;
+        
+        for(int i:nums){
+            if(i==min_ele)
+                min_count++;
+            else if(i==max_ele)
+                max_count++;
+        }
+        
+        int result = n - max_count - min_count;
         
         return result;
     }
