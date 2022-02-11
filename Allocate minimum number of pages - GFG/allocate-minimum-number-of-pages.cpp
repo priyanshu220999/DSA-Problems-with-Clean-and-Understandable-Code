@@ -62,7 +62,7 @@ class Solution
         
         if(N==M) return maxi;
         
-        int low = 0,high = sum;
+        int low = maxi,high = sum;
         
         while(low<=high){
             
