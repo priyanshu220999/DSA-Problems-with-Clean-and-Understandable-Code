@@ -25,9 +25,9 @@ public:
         
         int n = bloomDay.size();
         
-        int result = -1;
-        
         if(m*k>n) return -1;
+        
+        int result = -1;
         
         int low = 0,high = 1e9;
         
