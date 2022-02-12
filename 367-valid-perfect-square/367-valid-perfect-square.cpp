@@ -4,7 +4,7 @@ public:
         
         if(num==1 || num==4 || num==9) return true;
         
-        long long int low = 1,high = num;
+        long long int low = 0,high = num;
         
         while(low<=high){
             
