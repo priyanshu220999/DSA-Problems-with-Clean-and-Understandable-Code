@@ -16,6 +16,8 @@ class Solution {
             rs = m*(m+1)/2 - (m-r)*(m-r+1)/2;
         else 
             rs = m*(m+1)/2 + (r-m);
+        
+        
         if(l==m)
             ls = m*(m+1)/2;
         else if(l<m)
