@@ -9,7 +9,7 @@ class Solution {
     
   public:
   
-  bool a[100000];
+    bool a[100000];
     long long primes[100000],in=0;
     
     void Sieve(int n)
@@ -20,7 +20,7 @@ class Solution {
         {
             if(a[i])
             {
-                for(int j=2*i; j<=n; j+=i)
+                for(int j=i*i; j<=n; j+=i)
                     a[j]=false;
             }
         }
