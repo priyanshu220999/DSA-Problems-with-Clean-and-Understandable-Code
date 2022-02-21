@@ -58,8 +58,8 @@ public:
             return -1;
         }
         
-        int result = -1;
         int left = 0,right = n-1;
+        
         if(is_sorted(nums,left,right))
             return bin_search(nums,left,right,target);
         
@@ -68,13 +68,13 @@ public:
         if(nums[min_index]==target)
             return min_index;
         
-        result = bin_search(nums,left,min_index-1,target);
+        if(min_index==n-1)
+            return bin_search(nums,left,right-1,target);
         
-        if(result!=-1) return result;
+        if(target<=nums[min_index-1] && target>=nums[left])
+            return bin_search(nums,left,min_index-1,target);
         
-        result = bin_search(nums,min_index+1,right,target);
-        
-        return result;
+        return bin_search(nums,min_index+1,right,target);
         
     }
 };
