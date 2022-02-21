@@ -26,6 +26,13 @@ class Solution
     vector <int> max_of_subarrays(int *arr, int n, int k)
     {
         // your code here
+        
+        if(k==1 || n==1){
+            return vector<int>(arr,arr+n);
+        }
+        if(k==n){
+            return {get_max(arr,n)};
+        }
         vector<int> ans;
         list<int> l;
         int i=0,j=0;
@@ -42,7 +49,6 @@ class Solution
                 if(arr[i] == l.front())
                     l.pop_front();
                 i++;j++;
-                
             }
         }
         return ans;
