@@ -55,7 +55,7 @@ vector<long long> printFirstNegativeInteger(long long int A[],long long int N, l
     
     vector<long long> result;
     
-    if(N==1){
+    if(N==1){  // Edge Case 1
         if(A[0]<0){
             result.push_back(A[0]);
         }
@@ -65,24 +65,24 @@ vector<long long> printFirstNegativeInteger(long long int A[],long long int N, l
         return result;
     }
     
-    if(K==1){
+    if(K==1){ // Edge Case 2 
         return get_negatives_or_zero(A,N);
     }
     
-    if(K==N){
+    if(K==N){ // Edge Case 3
         return {first_negative_or_zero(A,N)};
     }
     
     long long int i = 0,j = 0;
     vector<long long> negative;
     
-    for(;j<K;j++){
+    for(;j<K;j++){  // First Window 
         if(A[j]<0) negative.push_back(A[j]);
     }
     if(negative.empty()) result.push_back(0);
     else result.push_back(negative[0]);
     
-    while(i<N && j<N){
+    while(i<N && j<N){ // Further windows 
         
         if(A[i]<0){
             negative.erase(negative.begin());
@@ -99,5 +99,5 @@ vector<long long> printFirstNegativeInteger(long long int A[],long long int N, l
         }
         j++;
     }
-    return result;
+    return result; // Final Result 
  }
