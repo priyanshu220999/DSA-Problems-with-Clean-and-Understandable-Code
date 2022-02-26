@@ -11,10 +11,13 @@ public:
         
         for(int i = 0;i<n;i++){
             
-            count = s[i]=='1'?count+1:0;
+            if(s[i]=='1')
+                count++;
+            else 
+                count = 0;
             
-            result = (result+count)%mod;
-            
+            result += count;
+            result %=mod;
         }
         return result;
     }
