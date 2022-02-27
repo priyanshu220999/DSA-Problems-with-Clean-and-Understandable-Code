@@ -4,17 +4,6 @@ class Solution {
         return n%2;
     }
     
-    int get_odd_count(vector<int> nums){
-        
-        int count = 0;
-        
-        for(int i:nums){
-            if(is_odd(i))
-                count++;
-        }
-        return count;
-    }
-    
     int atmostK(vector<int> nums,int n,int k){
         
         if(k==0)
