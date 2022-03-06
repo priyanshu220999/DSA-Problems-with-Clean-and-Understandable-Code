@@ -39,7 +39,7 @@ class Solution{
                 hash[sum] = i;
             }
             else{
-                if(is_even(i-hash[sum]) || sum==0){
+                if(is_even(i-hash[sum])){
                     result = max(result,i-hash[sum]);
                 }
             }
