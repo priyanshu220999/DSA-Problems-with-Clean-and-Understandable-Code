@@ -14,27 +14,26 @@ public:
         // code here
         if(n==1) return arr1[0]==arr2[0]?1:0;
         
-        unordered_map<int,int> hash;
+        vector<int> arr(n);
         
-        vector<int> diff(2*n+1,-1);
-        int sum1 = 0,sum2 = 0,cur_diff = 0,result = 0;
+        for(int i=0;i<n;i++){
+            arr[i] = arr1[i]-arr2[i];
+        }
+        
+        unordered_map<int,int> hash;
+        int sum = 0,result = 0;
         
         for(int i=0;i<n;i++){
             
-            sum1+=arr1[i];
-            sum2+=arr2[i];
+            sum+=arr[i];
             
-            cur_diff = sum1-sum2;
-            
-            int diff_index = cur_diff+n;
-            if(cur_diff == 0){
+            if(sum==0)
                 result = i+1;
-            }
-            else if(diff[diff_index]==-1){
-                diff[diff_index] = i;
+            if(hash.find(sum)!=hash.end()){
+                result = max(result,i-hash[sum]);
             }
             else{
-                result = max(result,i-diff[diff_index]);
+                hash[sum] = i;
             }
         }
         return result;
