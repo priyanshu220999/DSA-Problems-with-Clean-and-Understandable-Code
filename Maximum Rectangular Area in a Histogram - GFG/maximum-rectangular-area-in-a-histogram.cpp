@@ -64,7 +64,7 @@ class Solution
         vector<long long> next_smaller = get_next_smaller(arr,n);
         vector<long long> prev_smaller = get_prev_smaller(arr,n);
         
-        long long max_area = LLONG_MIN;
+        long long max_area = 0;
         
         for(int i = 0;i<n;i++){
             
