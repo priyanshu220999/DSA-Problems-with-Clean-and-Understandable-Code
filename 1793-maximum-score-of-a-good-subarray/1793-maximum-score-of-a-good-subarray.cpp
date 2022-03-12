@@ -47,7 +47,7 @@ public:
         
         for(int i = 0;i<n;i++){
             
-            if(next_smaller[i]-1>=k && prev_smaller[i]+1<=k){
+            if(next_smaller[i]>k && prev_smaller[i]<k){
                 
                 int breadth = next_smaller[i]-prev_smaller[i]-1;
 
