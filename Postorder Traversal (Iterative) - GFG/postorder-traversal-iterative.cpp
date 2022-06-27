@@ -98,31 +98,32 @@ class Solution{
     public:
     vector<int> postOrder(Node* node) {
         // code here
-        if(!node)
-            return {};
+        
         vector<int> result;
-        stack<Node*> hash1;
-        stack<Node*> hash2;
         
-        hash1.push(node);
+        stack<Node*> stk1;
+        stack<Node*> stk2;
         
-        while(!hash1.empty()){
+        stk1.push(node);
+        
+        while(stk1.empty()==false){
             
-            hash2.push(hash1.top());
-            hash1.pop();
-            if(hash2.top()->left){
-                hash1.push(hash2.top()->left);
-            }
-            if(hash2.top()->right){
-                hash1.push(hash2.top()->right);
-            }
+            stk2.push(stk1.top());
+            stk1.pop();
+            
+            if(stk2.top()->left)
+                stk1.push(stk2.top()->left);
+            if(stk2.top()->right)
+                stk1.push(stk2.top()->right);
         }
-        int n = hash2.size();
+        
+        int n = stk2.size();
         
         for(int i=0;i<n;i++){
-            result.push_back(hash2.top()->data);
-            hash2.pop();
+            result.push_back(stk2.top()->data);
+            stk2.pop();
         }
+        
         return result;
     }
 };
