@@ -10,27 +10,42 @@
  * };
  */
 class Solution {
-    
-    void solve(vector<int> &result, TreeNode *root){
-        
-        if(!root)
-            return;
-        solve(result,root->left);
-        solve(result,root->right);
-        result.push_back(root->val);
-    }
-    
 public:
     vector<int> postorderTraversal(TreeNode* root) {
         
-        if(!root)
+        if(root==nullptr)
             return {};
         
         vector<int> result;
         
-        solve(result,root);
+        stack<TreeNode*> hash;
+        
+        TreeNode* curr = root;
+        
+        while(curr!=NULL || !hash.empty()){
+            
+            if(curr){
+                hash.push(curr);
+                curr = curr->left;
+            }
+            else{
+                TreeNode* temp = hash.top()->right;
+                if(temp==NULL){
+                    temp = hash.top();
+                    hash.pop();
+                    result.push_back(temp->val);
+                    while(!hash.empty() && temp==hash.top()->right){
+                        temp = hash.top();
+                        hash.pop();
+                        result.push_back(temp->val);
+                    }
+                }
+                else{
+                    curr = temp;
+                }
+            }
+        }
         
         return result;
-        
     }
 };
