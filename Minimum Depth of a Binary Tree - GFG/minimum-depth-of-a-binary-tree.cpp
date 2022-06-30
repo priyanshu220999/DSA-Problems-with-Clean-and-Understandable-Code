@@ -94,28 +94,31 @@ class Solution{
     /*You are required to complete this method*/
     int minDepth(Node *root) {
         // Your code here
-        if(!root)
+        if(!root){
             return 0;
-        
-        if(!root->left && !root->right)
-            return 1;
-        
-        int leftDepth,rightDepth;
-        
-        if(root->left){
-            leftDepth = minDepth(root->left);
-        }
-        else{
-            leftDepth = INT_MAX;
-        }
-        if(root->right){
-            rightDepth = minDepth(root->right);
-        }
-        else{
-            rightDepth = INT_MAX;
         }
         
-        return 1 + min(leftDepth,rightDepth);
+        queue<Node*> hash;
+        hash.push(root);
+        
+        int i = 0;
+        
+        while(!hash.empty()){
+            
+            i++;
+            int k = hash.size();
+            
+            for(int j=0;j<k;j++){
+                
+                Node *temp = hash.front();
+                hash.pop();
+                if(temp->left) hash.push(temp->left);
+                if(temp->right) hash.push(temp->right);
+                if(temp->left==NULL && temp->right==NULL)
+                    return i;
+            }
+        }
+        return -1;
     }
 };
 
