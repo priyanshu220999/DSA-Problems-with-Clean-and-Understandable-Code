@@ -16,12 +16,28 @@ public:
         if(root == nullptr)
             return 0;
         
-        if(!root->left && !root->right)
-            return 1;
+        queue<TreeNode*> hash;
+        hash.push(root);
+        int i = 0;
         
-        int leftDepth = root->left?minDepth(root->left):INT_MAX;
-        int rightDepth = root->right?minDepth(root->right):INT_MAX;
-        
-        return 1 + min(leftDepth,rightDepth);
+        while(!hash.empty()){
+            
+            i++;
+            int n = hash.size();
+            
+            for(int j=0;j<n;j++){
+                
+                TreeNode* temp = hash.front();
+                
+                hash.pop();
+                
+                if(temp->left) hash.push(temp->left);
+                if(temp->right) hash.push(temp->right);
+                
+                if(temp->left == NULL && temp->right == NULL)
+                    return i;
+            }
+        }
+        return -1; //Juts for the compiler...
     }
 };
