@@ -103,13 +103,19 @@ struct Node
 
 class Solution{
     
-    int findHeight(Node* root){
+    int dfsHeight(Node* root){
         
         if(!root){
             return 0;
         }
         
-        return 1 + max(findHeight(root->left),findHeight(root->right));
+        int lh = dfsHeight(root->left);
+        if(lh==-1) return -1;
+        int rh = dfsHeight(root->right);
+        if(rh==-1) return -1;
+        if(abs(lh-rh)>1) return -1;
+        
+        return max(lh,rh)+1;
     }
     
     public:
@@ -117,18 +123,7 @@ class Solution{
     bool isBalanced(Node *root)
     {
         //Your Code here
-        if(!root) return true;
-        
-        int lh = findHeight(root->left);
-        int rh = findHeight(root->right);
-        
-        if(abs(lh-rh)>1) return false;
-        
-        bool lCheck = isBalanced(root->left);
-        bool rCheck = isBalanced(root->right);
-        
-        if(!lCheck || !rCheck) return false;
-        return true;
+        return dfsHeight(root)!=-1;
     }
 };
 
