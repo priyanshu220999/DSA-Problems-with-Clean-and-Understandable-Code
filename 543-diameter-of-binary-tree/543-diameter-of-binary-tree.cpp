@@ -13,25 +13,25 @@ class Solution {
     
     int diameter = 0;
     
-    int findHeight(TreeNode* root){
+    int findHeight(TreeNode* root, int &diameter){
+        
         if(!root)
             return 0;
-        return 1 + max(findHeight(root->left),findHeight(root->right));
+        
+        int lh = findHeight(root->left,diameter);
+        int rh = findHeight(root->right,diameter);
+        
+        diameter = max(diameter,lh+rh);
+        
+        return 1 + max(lh,rh);
     }
     
 public:
     int diameterOfBinaryTree(TreeNode* root) {
         
-        if(!root)
-            return 0;
+        int diameter = 0;
         
-        int lh = findHeight(root->left);
-        int rh = findHeight(root->right);
-        
-        diameter = max(diameter,lh+rh);
-        
-        diameterOfBinaryTree(root->left);
-        diameterOfBinaryTree(root->right);
+        findHeight(root,diameter);
         
         return diameter;
     }
