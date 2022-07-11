@@ -10,6 +10,18 @@
  * };
  */
 class Solution {
+    
+    void help(TreeNode* root,int level,vector<int> &result){
+        
+        if(!root)
+            return;
+        
+        if(level==result.size())
+            result.push_back(root->val);
+        help(root->right,level+1,result);
+        help(root->left,level+1,result);
+    }
+    
 public:
     vector<int> rightSideView(TreeNode* root) {
         
@@ -18,34 +30,7 @@ public:
         
         vector<int> result;
         
-        queue<pair<TreeNode*,int>> hash;
-        
-        map<int,TreeNode*> nodes;
-        
-        hash.push({root,0});
-        
-        while(!hash.empty()){
-            
-            int n = hash.size();
-            
-            for(int i=0;i<n;i++){
-                
-                auto cur = hash.front();
-                hash.pop();
-                TreeNode* temp = cur.first;
-                int x = cur.second;
-                nodes[x] = temp;
-                
-                if(temp->left)
-                    hash.push({temp->left,x+1});
-                if(temp->right)
-                    hash.push({temp->right,x+1});
-            }
-        }
-        
-        for(auto ptr:nodes){
-            result.push_back(ptr.second->val);
-        }
+        help(root,0,result);
         
         return result;
     }
