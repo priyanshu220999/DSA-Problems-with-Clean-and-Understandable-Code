@@ -126,39 +126,27 @@ struct Node
 };
  */
 
+void getLeftView(Node* root,int level,vector<int> &result){
+    
+    if(!root)
+        return;
+    
+    if(level==result.size()){
+        result.push_back(root->data);
+    }
+    getLeftView(root->left,level+1,result);
+    getLeftView(root->right,level+1,result);
+}
+
 //Function to return a list containing elements of left view of the binary tree.
 vector<int> leftView(Node *root)
 {
-    if(!root)
-        return {};
-        
     vector<int> result;
-    queue<pair<Node*,int>> hash;
-    map<int,Node*> nodes;
     
-    hash.push({root,0});
+    if(!root)
+        return result;
     
-    while(!hash.empty()){
-        
-        int n = hash.size();
-        
-        for(int i=0;i<n;i++){
-            
-            auto cur = hash.front();
-            hash.pop();
-            Node* temp = cur.first;
-            int x = cur.second;
-            
-            if(nodes.find(x)==nodes.end())
-                nodes[x] = temp;
-            if(temp->left)
-                hash.push({temp->left,x+1});
-            if(temp->right)
-                hash.push({temp->right,x+1});
-        }
-    }
-    for(auto ptr:nodes){
-        result.push_back(ptr.second->data);
-    }
+    getLeftView(root,0,result);
+    
     return result;
 }
