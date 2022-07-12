@@ -24,31 +24,30 @@ public:
         
         while(!hash.empty()){
             
+            int minAtLevel = hash.front().second;
             int n = hash.size();
             
-            int first,second;
-            
-            int mmin = hash.front().second;
+            int mn,mx;
             
             for(int i=0;i<n;i++){
                 
-                int cur_id = hash.front().second - mmin;
+                int curIndex = hash.front().second - minAtLevel;
                 
                 TreeNode* temp = hash.front().first;
                 
                 hash.pop();
                 
                 if(i==0)
-                    first = cur_id;
+                    mn = curIndex;
                 if(i==n-1)
-                    second = cur_id;
+                    mx = curIndex;
+                
                 if(temp->left)
-                    hash.push({temp->left,cur_id*2ll+1});
+                    hash.push({temp->left,2ll*curIndex+1});
                 if(temp->right)
-                    hash.push({temp->right,cur_id*2ll+2});
+                    hash.push({temp->right,2ll*curIndex+2});
             }
-            
-            result = max(result,second-first+1);
+            result = max(result,mx-mn+1);
         }
         
         return result;
