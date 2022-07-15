@@ -11,27 +11,12 @@
  */
 class Solution {
     
-    void help(TreeNode* root,int &count){
-        
-        if(!root)
-            return;
-        
-        count++;
-        
-        help(root->left,count);
-        help(root->right,count);
-    }
-    
 public:
     int countNodes(TreeNode* root) {
         
         if(!root)
             return 0;
         
-        int count = 0;
-        
-        help(root,count);
-        
-        return count;
+        return 1 + countNodes(root->left) + countNodes(root->right);
     }
 };
